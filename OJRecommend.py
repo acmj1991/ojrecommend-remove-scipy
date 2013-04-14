@@ -79,6 +79,7 @@ Ans_num = int(file_conf["Ans_num"])
 #题目个数
 Pro_Num = RE.get_pro_num(score_file)
 
+
 #求出用户已ac题目矩阵
 [User_AC_Pro_Matrix, User_AC_Sum, Pro_AC_Sum] = RE.pro_user_matrix(rev_file, User_Name, Pro_Num, Pro_Num+1000)
 
@@ -96,10 +97,14 @@ User_Rcomend_Pro_Mat = Pro_Pro_Simily * User_AC_Pro_Matrix_Front
 
 #print User_Rcomend_Pro_Mat
 #去掉已经ac的题目
-User_Rcomend_Pro_Mat[User_AC_Pro_Matrix > 0] = 0
-User_Rcomend_Pro_Mat = User_Rcomend_Pro_Mat.T * -1
+User_Rcomend_Pro_Mat[User_AC_Pro_Matrix != 0] = 0
+User_Rcomend_Pro_Mat = User_Rcomend_Pro_Mat.T
+
+#print User_AC_Pro_Matrix[49, 356]
 
 #展示结果
 show_ans(ans_file, User_Id, User_Rcomend_Pro_Mat, Pro_Num, Ans_num, User_Num)
+
+
 
 
